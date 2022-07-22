@@ -5,8 +5,16 @@
     <title>Test odpowiedzi</title>
 </head>
 <body>
-<h1>Test odpowiedzi</h1>
-<h2 th:text="'Odpowiedź kontrolera to: ' + ${name}"></h2>
+<h1>Twoje pytanie to:</h1>
+<h2 th:text="'Wylosowane pytanie: ' + ${questionBody}"></h2>
+<form action="response">
+    <input th:text=" *{answerA}" type="radio" id="1" name="myAnswer" value="answerA"><br>
+    <input th:text=" ${answerB}" type="radio" id="2" name="myAnswer" value="answerB"><br>
+    <input th:text=" ${answerC}" type="radio" id="3" name="myAnswer" value="answerC"><br>
+    <input th:text=" ${answerD}" type="radio" id="4" name="myAnswer" value="answerD"><br>
 
+    <button>Odpowiadam</button>
+
+</form>
 </body>
 </html>

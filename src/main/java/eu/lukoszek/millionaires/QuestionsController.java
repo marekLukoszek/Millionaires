@@ -7,18 +7,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+
+import static java.lang.Integer.parseInt;
+
 
 @Controller
-class QuestionsController{
-    @RequestMapping("/drawQuestion")
-    @ResponseBody
-    String getParameter(@RequestParam String one, Model model){
-        model.addAttribute("name", one);
-        return "question";
+class QuestionsController {
+    QuestionsService questionsService;
 
+    public QuestionsController(QuestionsService questionsService) {
+        this.questionsService = questionsService;
     }
 
+    @RequestMapping("/drawQuestion")
+    String getParameter(@RequestParam String start, Model model) {
+        model.addAttribute("name", start);
+        Questions question = questionsService.drawQuestion(parseInt(start));
+        model.addAttribute("questionBody", question.getQuestionBody());
+        model.addAttribute("answerA", question.getAnswerA());
+        model.addAttribute("answerB", question.getAnswerB());
+        model.addAttribute("answerC", question.getAnswerC());
+        model.addAttribute("answerD", question.getAnswerD());
+        return "question";
+    }
+
+    @RequestMapping("/response")
+    String checkAnswer(@RequestParam String myAnswer, Model model){
+
+
+    return null;
+    }
     @RequestMapping("/getStats")
     @ResponseBody
     LocalDate home() {
