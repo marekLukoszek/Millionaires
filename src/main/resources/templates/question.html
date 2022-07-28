@@ -8,13 +8,14 @@
 <h1>Twoje pytanie to:</h1>
 <h2 th:text="'Wylosowane pytanie: '+ ${questionBody}"></h2>
 <form action="response">
-    <input th:text="${answerA}" type="radio" id="1" name="userAnswer" value="answerA"><br>
-    <input th:text="${answerB}" type="radio" id="2" name="userAnswer" value="answerB"><br>
-    <input th:text="${answerC}" type="radio" id="3" name="userAnswer" value="answerC"><br>
-    <input th:text="${answerD}" type="radio" id="4" name="userAnswer" value="answerD"><br>
+    <input th:text="${answerA}" type="radio" id="1" name="userAnswer" value="A"><br>
+    <input th:text="${answerB}" type="radio" id="2" name="userAnswer" value="B"><br>
+    <input th:text="${answerC}" type="radio" id="3" name="userAnswer" value="C"><br>
+    <input th:text="${answerD}" type="radio" id="4" name="userAnswer" value="D"><br>
+
 
     <button>Odpowiadam</button>
-
+    <h2 th:text="${session.difficulty}">Nagłówek</h2>
 </form>
 </body>
 </html>
