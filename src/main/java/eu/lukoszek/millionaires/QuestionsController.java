@@ -1,5 +1,6 @@
 package eu.lukoszek.millionaires;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +44,7 @@ class QuestionsController {
             model.addAttribute("answerC", questionDto.getAnswerC());
             model.addAttribute("answerD", questionDto.getAnswerD());
 
+
         return "question";
     }
 
@@ -50,6 +52,7 @@ class QuestionsController {
     String checkAnswer(@RequestParam String userAnswer, HttpSession session, Model model) {
         String goodAnswer = (String) session.getAttribute("rightAnswer");
         model.addAttribute("result", questionsService.evaluate(userAnswer, goodAnswer));
+
         return "evaluation";
     }
 
