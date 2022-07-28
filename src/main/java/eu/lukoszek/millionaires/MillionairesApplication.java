@@ -11,8 +11,5 @@ public class MillionairesApplication{
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(MillionairesApplication.class, args);
-        QuestionsRepository questionsRepository = context.getBean(QuestionsRepository.class);
-        Optional<Questions> question = questionsRepository.findById(1L);
-        System.out.println(question.toString());
     }
 }

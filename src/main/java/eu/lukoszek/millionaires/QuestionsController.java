@@ -25,24 +25,22 @@ class QuestionsController {
 
     @RequestMapping("/drawQuestion")
     String getParameter(@RequestParam String start, HttpSession session, Model model) {
-        if(session.getAttribute("difficulty") == null) {
+        if (session.getAttribute("difficulty") == null) {
             session.setAttribute("difficulty", 0);
             questionDto = questionsService.drawQuestion(1);
         } else {
             int diff = (int) session.getAttribute("difficulty");
-            System.out.println("diff z draw"+ diff);
             int temp = (parseInt(start) + diff + 1);
-            System.out.println(temp);
             questionDto = questionsService.drawQuestion(temp);
         }
-            session.setAttribute("rightAnswer", questionDto.getRightAnswer());
-            session.setAttribute("difficulty", questionDto.getDifficulty());
-            session.setAttribute("questionId", questionDto.getQuestionId());
-            model.addAttribute("questionBody", questionDto.getQuestionBody());
-            model.addAttribute("answerA", questionDto.getAnswerA());
-            model.addAttribute("answerB", questionDto.getAnswerB());
-            model.addAttribute("answerC", questionDto.getAnswerC());
-            model.addAttribute("answerD", questionDto.getAnswerD());
+        session.setAttribute("rightAnswer", questionDto.getRightAnswer());
+        session.setAttribute("difficulty", questionDto.getDifficulty());
+        session.setAttribute("questionId", questionDto.getQuestionId());
+        model.addAttribute("questionBody", questionDto.getQuestionBody());
+        model.addAttribute("answerA", questionDto.getAnswerA());
+        model.addAttribute("answerB", questionDto.getAnswerB());
+        model.addAttribute("answerC", questionDto.getAnswerC());
+        model.addAttribute("answerD", questionDto.getAnswerD());
 
 
         return "question";
@@ -51,9 +49,15 @@ class QuestionsController {
     @RequestMapping("/response")
     String checkAnswer(@RequestParam String userAnswer, HttpSession session, Model model) {
         String goodAnswer = (String) session.getAttribute("rightAnswer");
-        model.addAttribute("result", questionsService.evaluate(userAnswer, goodAnswer));
-
-        return "evaluation";
+        boolean result = questionsService.evaluate(userAnswer, goodAnswer);
+        if (result) {
+            model.addAttribute("result", "poprawna");
+            return "evaluation";
+        } else {
+            model.addAttribute("result", "błedna");
+            session.setAttribute("difficulty", 0);
+            return "end";
+        }
     }
 
     @RequestMapping("/getStats")
