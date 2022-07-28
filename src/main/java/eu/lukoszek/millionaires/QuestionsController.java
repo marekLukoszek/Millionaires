@@ -1,6 +1,5 @@
 package eu.lukoszek.millionaires;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,15 +24,24 @@ class QuestionsController {
 
     @RequestMapping("/drawQuestion")
     String getParameter(@RequestParam String start, HttpSession session, Model model) {
-        questionDto = questionsService.drawQuestion(parseInt(start + 1));
-        session.setAttribute("rightAnswer", questionDto.getRightAnswer());
-        session.setAttribute("difficulty", questionDto.getDifficulty());
-        session.setAttribute("questionId", questionDto.getQuestionId());
-        model.addAttribute("questionBody", questionDto.getQuestionBody());
-        model.addAttribute("answerA", questionDto.getAnswerA());
-        model.addAttribute("answerB", questionDto.getAnswerB());
-        model.addAttribute("answerC", questionDto.getAnswerC());
-        model.addAttribute("answerD", questionDto.getAnswerD());
+        if(session.getAttribute("difficulty") == null) {
+            session.setAttribute("difficulty", 0);
+            questionDto = questionsService.drawQuestion(1);
+        } else {
+            int diff = (int) session.getAttribute("difficulty");
+            System.out.println("diff z draw"+ diff);
+            int temp = (parseInt(start) + diff + 1);
+            System.out.println(temp);
+            questionDto = questionsService.drawQuestion(temp);
+        }
+            session.setAttribute("rightAnswer", questionDto.getRightAnswer());
+            session.setAttribute("difficulty", questionDto.getDifficulty());
+            session.setAttribute("questionId", questionDto.getQuestionId());
+            model.addAttribute("questionBody", questionDto.getQuestionBody());
+            model.addAttribute("answerA", questionDto.getAnswerA());
+            model.addAttribute("answerB", questionDto.getAnswerB());
+            model.addAttribute("answerC", questionDto.getAnswerC());
+            model.addAttribute("answerD", questionDto.getAnswerD());
 
         return "question";
     }
@@ -42,8 +50,6 @@ class QuestionsController {
     String checkAnswer(@RequestParam String userAnswer, HttpSession session, Model model) {
         String goodAnswer = (String) session.getAttribute("rightAnswer");
         model.addAttribute("result", questionsService.evaluate(userAnswer, goodAnswer));
-        session.setAttribute("difficulty", session.getAttribute("difficulty" + 1));
-        System.out.println(session.getAttribute("difficulty"));
         return "evaluation";
     }
 

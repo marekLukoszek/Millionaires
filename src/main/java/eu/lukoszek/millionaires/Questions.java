@@ -16,11 +16,11 @@ public class Questions {
         String answerC;
     @Column(name = "answer_d")
         String answerD;
-    char rightAnswer;
+    String rightAnswer;
     int difficulty;
 
     public Questions(String questionBody, String answerA, String answerB, String answerC,
-                     String answerD, char rightAnswer, int difficulty) {
+                     String answerD, String rightAnswer, int difficulty) {
         this.questionBody = questionBody;
         this.answerA = answerA;
         this.answerB = answerB;
@@ -78,11 +78,11 @@ public class Questions {
         this.answerD = answerD;
     }
 
-    public char getRightAnswer() {
+    public String getRightAnswer() {
         return rightAnswer;
     }
 
-    public void setRightAnswer(char rightAnswer) {
+    public void setRightAnswer(String rightAnswer) {
         this.rightAnswer = rightAnswer;
     }
 

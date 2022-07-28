@@ -13,10 +13,10 @@ public class QuestionDto {
     String answerB;
     String answerC;
     String answerD;
-    char rightAnswer;
+    String rightAnswer;
     int difficulty;
 
-    public QuestionDto(Long questionId, String questionBody, String answerA, String answerB, String answerC, String answerD, char rightAnswer, int difficulty) {
+    public QuestionDto(Long questionId, String questionBody, String answerA, String answerB, String answerC, String answerD, String rightAnswer, int difficulty) {
         this.questionId = questionId;
         this.questionBody = questionBody;
         this.answerA = answerA;
@@ -78,11 +78,11 @@ public class QuestionDto {
         this.answerD = answerD;
     }
 
-    public char getRightAnswer() {
+    public String getRightAnswer() {
         return rightAnswer;
     }
 
-    public void setRightAnswer(char rightAnswer) {
+    public void setRightAnswer(String rightAnswer) {
         this.rightAnswer = rightAnswer;
     }
 
