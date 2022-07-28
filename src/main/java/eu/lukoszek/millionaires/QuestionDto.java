@@ -17,6 +17,7 @@ public class QuestionDto {
     int difficulty;
 
     public QuestionDto(Long questionId, String questionBody, String answerA, String answerB, String answerC, String answerD, String rightAnswer, int difficulty) {
+
         this.questionId = questionId;
         this.questionBody = questionBody;
         this.answerA = answerA;
@@ -83,6 +84,7 @@ public class QuestionDto {
     }
 
     public void setRightAnswer(String rightAnswer) {
+
         this.rightAnswer = rightAnswer;
     }
 
