@@ -6,10 +6,22 @@
 </head>
 <body>
 <h2 th:text ="'Twoja odpowiedź jest: ' + ${result}"></h2>
-<br>
+<h2>GRATULACJE !!!</h2>
+<h2 th:if="${session.difficulty == 1}">Wygrałeś 500 zł</h2>
+<h2 th:if="${session.difficulty == 2}">Wygrałeś 1 000 zł</h2>
+<h2 th:if="${session.difficulty == 3}">Wygrałeś 2 000 zł</h2>
+<h2 th:if="${session.difficulty == 4}">Wygrałeś 5 000 zł</h2>
+<h2 th:if="${session.difficulty == 5}">Wygrałeś 10 000 zł</h2>
+<h2 th:if="${session.difficulty == 6}">Wygrałeś 20 000 zł</h2>
+<h2 th:if="${session.difficulty == 7}">Wygrałeś 40 000 zł</h2>
+<h2 th:if="${session.difficulty == 8}">Wygrałeś 75 000 zł</h2>
+<h2 th:if="${session.difficulty == 9}">Wygrałeś 125 000 zł</h2>
+<h2 th:if="${session.difficulty == 10}">Wygrałeś 250 000 zł</h2>
+<h2 th:if="${session.difficulty == 11}">Wygrałeś 500 000 zł</h2>
+<h2 th:if="${session.difficulty == 12}">Wygrałeś 1 000 000 zł</h2>
 <form action="drawQuestion">
     <input type="submit" name="start" value="0">
-    <label>Pobierz pytanie za 200 zł</label>
+    <label>Pobierz pytanie kolejne pytanie...</label>
 </form>
 
 </body>
