@@ -53,6 +53,8 @@ class QuestionsController {
             return "evaluation";
         } else {
             model.addAttribute("result", "błedna");
+            int yourPrize = (int) session.getAttribute("difficulty");
+            model.addAttribute("prize",yourPrize-1);
             session.setAttribute("difficulty", 0);
             return "end";
         }
