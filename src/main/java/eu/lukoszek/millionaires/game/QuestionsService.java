@@ -1,4 +1,4 @@
-package eu.lukoszek.millionaires;
+package eu.lukoszek.millionaires.game;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

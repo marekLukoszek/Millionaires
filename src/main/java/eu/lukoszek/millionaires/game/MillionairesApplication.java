@@ -1,10 +1,8 @@
-package eu.lukoszek.millionaires;
+package eu.lukoszek.millionaires.game;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.util.Optional;
 
 @SpringBootApplication
 public class MillionairesApplication{
