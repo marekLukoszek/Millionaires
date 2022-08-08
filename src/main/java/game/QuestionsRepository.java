@@ -1,4 +1,4 @@
-package eu.lukoszek.millionaires.game;
+package game;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

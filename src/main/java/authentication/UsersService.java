@@ -13,8 +13,8 @@ public class UsersService {
         this.usersRepository = userRepository;
     }
 
-    public Optional<UserDto> findCredentialsByEmail(String userName) {
-        return usersRepository.findUserByUsername(userName)
-                .map(UserDtoMapper::map);
+    public Optional<UserDto> findUserByUsername(String userName) {
+        User user = usersRepository.findUserByUsername(userName);
+        return Optional.of(UsersDtoMapper.map(user));
     }
 }
