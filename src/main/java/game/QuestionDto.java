@@ -1,4 +1,4 @@
-package eu.lukoszek.millionaires.game;
+package game;
 
 import org.springframework.stereotype.Component;
 
