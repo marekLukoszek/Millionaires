@@ -6,7 +6,3 @@ spring:
     password: qwerty123
   jpa:
     show-sql: true
-  security:
-    user:
-      name: admin
-      password: pass

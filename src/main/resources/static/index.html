@@ -2,19 +2,48 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}"/>
+    <style> td {
+        border: 1px solid black;
+    } </style>
     <title>Aplikacja Milionerzy</title>
 </head>
 <body>
-<h2>Witaj w Milionerach Online:</h2>
-<p>Czy chcesz rozpocząć swoją przygodę?</p>
-<form action="drawQuestion">
-    <input id="difficulty" name="start" type="submit" value=0>
-    <label>Pobierz pytanie za 100 zł</label>
-</form>
-<br>
-<form action="getStats">
-    <input type="submit" value="Pokaż statystyki dla zarejestrowanych graczy">
-    </label>
-</form>
+<div class="container">
+    <table>
+        <tr>
+            <td>
+                <h2>Witaj w Milionerach Online:</h2>
+                <p>Czy chcesz rozpocząć swoją przygodę?</p>
+                <form action="drawQuestion">
+                    <input id="difficulty" name="start" type="submit" value=0>
+                    <label>Pobierz pytanie za 100 zł</label>
+                </form>
+
+            </td>
+            <td><h1 class="login-header">Zaloguj się</h1>
+                <form class="login-form" action="/login" method="post">
+                    <input name="username" placeholder="nazwa użytkownika" class="form-item">
+                    <input name="password" placeholder="hasło" type="password" class="form-item">
+                    <button type="submit" class="form-item">Zaloguj się</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="getStats">
+                    <input type="submit" value="Pokaż statystyki dla zarejestrowanych graczy">
+                    </label>
+                </form>
+            </td>
+            <td>Test 2</td>
+        </tr>
+        <tr><td> <img src="img/legion_6.jpg"></td></tr>
+    </table>
+
+</div>
 </body>
 </html>
