@@ -3,8 +3,8 @@ package game;
 import org.springframework.stereotype.Service;
 
 @Service
-class QuestionsDtoMapper {
-    private final QuestionsRepository questionsRepository;
+public class QuestionsDtoMapper {
+    public final QuestionsRepository questionsRepository;
 
     QuestionsDtoMapper(QuestionsRepository questionsRepository) {
         this.questionsRepository = questionsRepository;

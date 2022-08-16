@@ -66,4 +66,5 @@ class QuestionsController {
     LocalDate home() {
         return LocalDate.now();
     }
+
 }
