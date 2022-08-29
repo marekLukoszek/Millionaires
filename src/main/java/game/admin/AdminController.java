@@ -4,8 +4,11 @@ import game.QuestionDto;
 import game.Questions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -18,11 +21,19 @@ public class AdminController {
     }
 
     @RequestMapping("/addQuestion")
-    String adminTaskUse(@RequestParam String questionBody, String answerA,String answerB,String answerC,String answerD,
-                        String rightAnswer, int difficulty, Model model) {
+    String adminAddQuestion(@RequestParam String questionBody, String answerA, String answerB, String answerC, String answerD,
+                            String rightAnswer, int difficulty, Model model) {
         Questions question = new Questions(questionBody, answerA, answerB, answerC, answerD, rightAnswer, difficulty);
         Questions addedQuestion = adminService.addQuestion(question);
-        model.addAttribute(addedQuestion);
+        System.out.println(addedQuestion.getQuestionBody());
+        model.addAttribute("addedQuestionBody", addedQuestion.getQuestionBody());
+        model.addAttribute("addedQuestionId", addedQuestion.getQuestionId());
         return "adminTaskDone";
     }
+    @RequestMapping("/getAllQuestions")
+    List<Questions> adminGetQuestionsList (){
+
+        return null;
+    }
+
 }
