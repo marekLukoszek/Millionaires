@@ -7,6 +7,8 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.List;
+
 @Service
 @Scope(scopeName = WebApplicationContext.SCOPE_SESSION,
         proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -23,7 +25,10 @@ public class AdminService {
        return question;
     }
 
+    List<Questions> getAllQuestions()  {
+        return adminRepository.findAll();
+    }
     void deleteQuestion(Long id){
         adminRepository.deleteById(id);
-    }
-}
+        }
+        }
