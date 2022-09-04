@@ -31,9 +31,10 @@ public class AdminController {
         return "adminTaskDone";
     }
     @RequestMapping("/getAllQuestions")
-    List<Questions> adminGetQuestionsList (){
-
-        return null;
+    String getQuestionsList (Model model){
+    List<Questions> questionsList = adminService.getQuestionsList();
+    model.addAttribute("list", questionsList);
+        return "questionsList";
     }
 
 }
