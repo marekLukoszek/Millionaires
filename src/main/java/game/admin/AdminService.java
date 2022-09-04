@@ -25,9 +25,10 @@ public class AdminService {
        return question;
     }
 
-    List<Questions> getAllQuestions()  {
+    List<Questions> getQuestionsList()  {
         return adminRepository.findAll();
     }
+
     void deleteQuestion(Long id){
         adminRepository.deleteById(id);
         }

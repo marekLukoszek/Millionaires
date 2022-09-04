@@ -1,4 +1,4 @@
-package authentication;
+package game.authentication;
 
 import org.springframework.stereotype.Service;
 
@@ -17,4 +17,9 @@ public class UsersService {
         User user = usersRepository.findUserByUsername(userName);
         return Optional.of(UsersDtoMapper.map(user));
     }
+    public Optional<UserDto> findUserById(Long id) {
+        User user = usersRepository.findUserById(id);
+        return Optional.of(UsersDtoMapper.map(user));
+    }
+
 }

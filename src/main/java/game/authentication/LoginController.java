@@ -1,4 +1,4 @@
-package authentication;
+package game.authentication;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +8,6 @@ class LoginController {
 
     @GetMapping("/login")
     String loginForm() {
-        return "login-form";
+        return "login";
     }
 }

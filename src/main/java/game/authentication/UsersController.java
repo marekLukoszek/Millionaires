@@ -1,4 +1,4 @@
-package authentication;
+package game.authentication;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

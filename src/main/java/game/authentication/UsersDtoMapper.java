@@ -1,4 +1,4 @@
-package authentication;
+package game.authentication;
 
 public class UsersDtoMapper {
         static UserDto map(User user) {
