@@ -7,7 +7,7 @@
 <body>
 <H1>Lista wszystkich pytań:</H1>
 <ul>
-    <li th:each="questions: ${list}" th:text="${questions.questionBody + ' ' + questions.rightAnswer}"></li>
+    <li th:each="questions: ${list}" th:text="${questions.questionId + ' ' +questions.questionBody}"></li>
 </ul>
 <a href="admin.html">Powrót do zadań Admina</a>
 </body>

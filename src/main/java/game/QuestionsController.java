@@ -23,7 +23,7 @@ class QuestionsController {
     }
 
     @RequestMapping("/drawQuestion")
-    String getParameter(@RequestParam String start, HttpSession session, Model model) {
+    String getQuestion(@RequestParam String start, HttpSession session, Model model) {
         if (session.getAttribute("difficulty") == null) {
             session.setAttribute("difficulty", 0);
             questionDto = questionsService.drawQuestion(1);

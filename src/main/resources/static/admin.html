@@ -7,8 +7,8 @@
 <body align="center">
 <H1>Witamy w Panelu Admina</H1>
 <h2>Wybierz co chcesz robić:</h2>
-<h3>Dodaj pytanie do bazy danych:</h3>
-<form action="/addQuestion" method="post">
+<h3>Dodawanie pytań do bazy danych:</h3>
+<form action="/addQuestion">
     <fieldset>
         <div>
             <p><label for="questionBody">Podaj treść pytania:</label></p>
@@ -24,11 +24,11 @@
             <input type="text" id="answerB" name="answerB">
         </div>
         <div>
-            <label for="answerA">Odpowiedź C</label>
+            <label for="answerC">Odpowiedź C</label>
             <input type="text" id="answerC" name="answerC">
         </div>
         <div>
-            <label for="answerA">Odpowiedź D</label>
+            <label for="answerD">Odpowiedź D</label>
             <input type="text" id="answerD" name="answerD">
         </div>
         <br>
@@ -62,13 +62,25 @@
     </fieldset>
 
 </form>
-
+<h3>Przeglądanie pytań:</h3>
 <form action="/getAllQuestions">
     <button type="submit">Pokaż wszystkie pytania</button>
 </form>
 <br>
-<form action="/admin">
-    <button type="submit" id="modifyQuestion" name="adminTask" value="modifyQuestion">Modyfikacja pytań</button>
+<form action="/getQuestionsByDifficulty">
+    <label for="getQuestionType">Podaj trudność pytań, jakie chcesz wyszukać</label>
+    <input type="text" id="getQuestionType" name="difficulty">
+    <button type="submit">Wyślij</button>
 </form>
+<br>
+<fieldset>
+    <h3>Usuwanie pytań:</h3>
+    <form action="/delete">
+        <label for="delete">Podaj id pytania do usunięcia</label>
+        <input type="text" id="delete" name="questionId">
+        <button type="submit">Wyślij</button>
+    </form>
+</fieldset>
+<a href="index.html">Powrót do strony głównej</a>
 </body>
 </html>
