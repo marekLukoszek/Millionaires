@@ -32,4 +32,8 @@ public class AdminService {
     void deleteQuestion(Long id){
         adminRepository.deleteById(id);
         }
-        }
+
+    List<Questions> getQuestionsListByDifficulty(int difficulty) {
+        return adminRepository.findAllByDifficulty(difficulty);
+    }
+}

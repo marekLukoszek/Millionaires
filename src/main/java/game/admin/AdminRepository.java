@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 public interface AdminRepository extends CrudRepository<Questions, Long> {
    @Transactional
    Questions save(Questions question);
@@ -14,4 +13,7 @@ public interface AdminRepository extends CrudRepository<Questions, Long> {
    void deleteById(Long id);
 
    List<Questions> findAll();
+
+   List<Questions> findAllByDifficulty(int difficulty);
+
 }
