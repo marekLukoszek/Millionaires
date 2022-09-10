@@ -18,10 +18,16 @@
 <h2 th:if="${session.difficulty == 9}">Wygrałeś 125 000 zł</h2>
 <h2 th:if="${session.difficulty == 10}">Wygrałeś 250 000 zł</h2>
 <h2 th:if="${session.difficulty == 11}">Wygrałeś 500 000 zł</h2>
-<h2 th:if="${session.difficulty == 12}">Wygrałeś 1 000 000 zł</h2>
+<h2 th:if="${session.difficulty == 12}">Wygrałeś 1 000 000 zł<br> Twoja wiedza na temat Starożytnego Rzymu jest powalająca!!!</h2>
+<h3 th:if="${session.difficulty < 12}">
 <form action="drawQuestion">
     <button type="submit" name="start" value="0">Losuj kolejne pytanie</button>
 </form>
-
+</h3>
+<h3 th:if="${session.difficulty == 12}">
+    <form action="drawQuestion">
+        <button type="submit" name="start" value="-12">Możesz spróbować ponowanie</button>
+    </form>
+</h3>
 </body>
 </html>
