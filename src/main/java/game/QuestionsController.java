@@ -49,8 +49,12 @@ class QuestionsController {
     String checkAnswer(@RequestParam String userAnswer, HttpSession session, Model model) {
         String goodAnswer = (String) session.getAttribute("rightAnswer");
         boolean result = questionsService.evaluate(userAnswer, goodAnswer);
+        int difficulty = (int)session.getAttribute("difficulty");
         if (result) {
             model.addAttribute("result", "poprawna");
+//            if (difficulty == 13){
+//                session.setAttribute("difficulty", 0);
+//            }
             return "evaluation";
         } else {
             model.addAttribute("result", "błedna");
