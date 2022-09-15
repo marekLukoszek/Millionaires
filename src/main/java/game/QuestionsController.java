@@ -1,5 +1,10 @@
 package game;
 
+import game.authentication.User;
+import game.authentication.UserDto;
+import game.authentication.UsersService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static java.lang.Integer.parseInt;
 
@@ -16,6 +22,7 @@ import static java.lang.Integer.parseInt;
 class QuestionsController {
     private QuestionsService questionsService;
     private QuestionDto questionDto;
+    private UsersService usersService;
 
     public QuestionsController(QuestionsService questionsService, QuestionDto questionDto) {
         this.questionsService = questionsService;
@@ -49,18 +56,15 @@ class QuestionsController {
     String checkAnswer(@RequestParam String userAnswer, HttpSession session, Model model) {
         String goodAnswer = (String) session.getAttribute("rightAnswer");
         boolean result = questionsService.evaluate(userAnswer, goodAnswer);
-        int difficulty = (int)session.getAttribute("difficulty");
         if (result) {
             model.addAttribute("result", "poprawna");
-//            if (difficulty == 13){
-//                session.setAttribute("difficulty", 0);
-//            }
             return "evaluation";
         } else {
             model.addAttribute("result", "błedna");
             int yourPrize = (int) session.getAttribute("difficulty");
-            model.addAttribute("prize",yourPrize-1);
+            model.addAttribute("prize", yourPrize - 1);
             session.setAttribute("difficulty", 0);
+
             return "end";
         }
     }
@@ -70,5 +74,13 @@ class QuestionsController {
     LocalDate home() {
         return LocalDate.now();
     }
-
+//    void saveGameResult(LocalDateTime localDateTime, int difficulty){
+//        String name = getLoggedUserName();
+//        UserDto userDto = usersService.findUserByUsername(name);
+//    }
+//
+//    String getLoggedUserName() {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        return auth.getName();
+//    }
 }
