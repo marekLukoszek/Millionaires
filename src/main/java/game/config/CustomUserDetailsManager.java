@@ -20,7 +20,7 @@ class CustomUserDetailsManager implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return usersService.findUserByUsername(username)
                 .map(this::createUserDetails)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User %s not found", username)));
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("Użytkownik %s nie znaleziony", username)));
     }
 
     private UserDetails createUserDetails(UserDto credentials) {
