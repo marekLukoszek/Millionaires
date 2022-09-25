@@ -1,10 +1,7 @@
 package game;
 
-import game.authentication.User;
-import game.authentication.UserDto;
 import game.authentication.UsersService;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static java.lang.Integer.parseInt;
-
 
 @Controller
 class QuestionsController {
@@ -24,9 +19,10 @@ class QuestionsController {
     private QuestionDto questionDto;
     private UsersService usersService;
 
-    public QuestionsController(QuestionsService questionsService, QuestionDto questionDto) {
+    public QuestionsController(QuestionsService questionsService, QuestionDto questionDto, UsersService usersService) {
         this.questionsService = questionsService;
         this.questionDto = questionDto;
+        this.usersService = usersService;
     }
 
     @RequestMapping("/drawQuestion")
@@ -47,8 +43,6 @@ class QuestionsController {
         model.addAttribute("answerB", questionDto.getAnswerB());
         model.addAttribute("answerC", questionDto.getAnswerC());
         model.addAttribute("answerD", questionDto.getAnswerD());
-
-
         return "question";
     }
 
@@ -63,8 +57,8 @@ class QuestionsController {
             model.addAttribute("result", "błedna");
             int yourPrize = (int) session.getAttribute("difficulty");
             model.addAttribute("prize", yourPrize - 1);
+//            saveGameResult(yourPrize);
             session.setAttribute("difficulty", 0);
-
             return "end";
         }
     }
@@ -74,9 +68,14 @@ class QuestionsController {
     LocalDate home() {
         return LocalDate.now();
     }
-//    void saveGameResult(LocalDateTime localDateTime, int difficulty){
+
+// Początek pracy nad zapisem wyników
+//    String saveGameResult(int difficulty) {
 //        String name = getLoggedUserName();
-//        UserDto userDto = usersService.findUserByUsername(name);
+//        Optional<UserDto> userDto = usersService.findUserByUsername(name);
+//        userDto.ifPresentOrElse((Consumer<? super UserDto>) userDto1 -> scoreService.saveScore(LocalDateTime.now(), difficulty, userDto1.getId()),
+//                (Runnable) new UsernameNotFoundException(String.format("Użytkownik %s nie znaleziony", name)));
+//    return "Zapisano wynik użytkownika %s " + name;
 //    }
 //
 //    String getLoggedUserName() {
