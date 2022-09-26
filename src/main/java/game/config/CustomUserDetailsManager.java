@@ -24,7 +24,6 @@ class CustomUserDetailsManager implements UserDetailsService {
     }
 
     private UserDetails createUserDetails(UserDto credentials) {
-        System.out.println(credentials.getUsername());
         return User.builder()
                 .username(credentials.getUsername())
                 .password(credentials.getPassword())

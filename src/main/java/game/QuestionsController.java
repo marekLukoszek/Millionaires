@@ -1,7 +1,12 @@
 package game;
 
+import game.authentication.UserDto;
 import game.authentication.UsersService;
 
+import game.scoreRecord.Score;
+import game.scoreRecord.ScoreService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
@@ -18,11 +24,14 @@ class QuestionsController {
     private QuestionsService questionsService;
     private QuestionDto questionDto;
     private UsersService usersService;
+    private ScoreService scoreService;
 
-    public QuestionsController(QuestionsService questionsService, QuestionDto questionDto, UsersService usersService) {
+    public QuestionsController(QuestionsService questionsService, QuestionDto questionDto, UsersService usersService,
+                               ScoreService scoreService) {
         this.questionsService = questionsService;
         this.questionDto = questionDto;
         this.usersService = usersService;
+        this.scoreService = scoreService;
     }
 
     @RequestMapping("/drawQuestion")
@@ -52,13 +61,17 @@ class QuestionsController {
         boolean result = questionsService.evaluate(userAnswer, goodAnswer);
         if (result) {
             model.addAttribute("result", "poprawna");
+            if (session.getAttribute("difficulty").equals(12)) {
+                saveGameResult(12);
+            }
             return "evaluation";
         } else {
             model.addAttribute("result", "błedna");
             int yourPrize = (int) session.getAttribute("difficulty");
             model.addAttribute("prize", yourPrize - 1);
-//            saveGameResult(yourPrize);
+            saveGameResult(yourPrize);
             session.setAttribute("difficulty", 0);
+            System.out.println(getLoggedUserName());
             return "end";
         }
     }
@@ -69,17 +82,18 @@ class QuestionsController {
         return LocalDate.now();
     }
 
-// Początek pracy nad zapisem wyników
-//    String saveGameResult(int difficulty) {
-//        String name = getLoggedUserName();
-//        Optional<UserDto> userDto = usersService.findUserByUsername(name);
-//        userDto.ifPresentOrElse((Consumer<? super UserDto>) userDto1 -> scoreService.saveScore(LocalDateTime.now(), difficulty, userDto1.getId()),
-//                (Runnable) new UsernameNotFoundException(String.format("Użytkownik %s nie znaleziony", name)));
-//    return "Zapisano wynik użytkownika %s " + name;
-//    }
-//
-//    String getLoggedUserName() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        return auth.getName();
-//    }
+    void saveGameResult(int difficulty) {
+        String name = getLoggedUserName();
+        Optional<UserDto> optUserDto = usersService.findUserByUsername(name);
+        if (optUserDto.isPresent()) {
+            UserDto userDto = optUserDto.get();
+            Score score = new Score(LocalDate.now(), difficulty, userDto.getId());
+            scoreService.saveResult(score);
+        }
+    }
+    
+    String getLoggedUserName() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
+    }
 }
