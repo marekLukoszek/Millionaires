@@ -1,0 +1,19 @@
+insert into questions(question_body, answer_a, answer_b, answer_c, answer_d, right_answer, difficulty) values
+('W którym roku odbyła się bitwa pod Zamą?', '216 r.p.n.e.', '202 r.p.n.e.', '195 r. n.e.', '210 r.p.n.e.', 'B', 5),
+('Kto zabił Juliusza Cezara?', 'Pompejusz Wielki', 'Neron', 'Marek Brutus', 'Wercyngetoryks', 'C', 1),
+('Jaki rzymski wódz zginął w bitwie z Partami pod Carhae?', 'Pompejusz Wielki', 'Marek Antoniusz', 'Germanik', 'Marek Krassus', 'D', 4),
+('Kto wziął udział w bitwie pod Kannami?', 'Juliusz Cezar', 'Neron', 'Scypion Afrykański', 'Hannibal', 'D', 1),
+('Jak zginał Marek Antoniusz?', 'Pepełnił samobójstwo', 'Zginął w bitwie pod Farsalos', 'Został zasztyletowany w Senacie', 'Był ofarą zarazy', 'A', 2),
+('Jak nazywał się następcja Oktawiana Augusta?', 'Juliusz Cezar', 'Wespazjan', 'Kaligula', 'Tyberiusz', 'D', 2),
+('Kto jest mitycznym założycielem Rzymu?', 'Remus i Romulus', 'Zeus', 'Juliusz Cezar', 'Oktawian August', 'A', 1),
+('Kto bronił Alezji w 52 r. p.n.e?', 'Juliusz Cesar', 'Arminiusz', 'Wercyngetoryks', 'Siegrfrid', 'C', '6'),
+('Co to jest Amfiteatr Flawiuszów?', 'Coloseum', 'Teatr Makcencjusza', 'Circus Maximus', 'Amfiteatr w Puli', 'A', '4'),
+('Jaką formę przyjęło uczczenie wojan dackich Trajana?', 'Łuk triumfalny', ' Świątynia Victorii', 'Kolumny Trajana', 'Forum Trajana', 'C', 7),
+('W którym roku odbyłquestionsa się bitwa pod Magnezją, w której Rzym pokonał Państwo Seleukidów?', '190 r.p.n.e.', '216 r.p.n.e', '52 r. n.e.', '50 r. n.e', 'A', 8),
+('Kto z poniższych był kochankiem Kleopatry?', 'Hannibal', 'Juliusz Cezar', 'August', 'Marek Agryppa', 'B', 9),
+('Kto dowodził wojskami rzymskimi na Polach Katalaunijskich?', 'Scypion Afrykański', 'Wespazjan', 'Konstantyn Wielki', 'Aecjusz', 'D', 10),
+('Jaka formacja była umieszczona pośrodku w szyku manipularnym?', 'Hastati', 'Velicites', 'Triari', 'Principes', 'D', 11),
+('Co to jest "aquila"?', 'Broń drzewcowa z okresu Republiki', 'Insygnium Legionu w kształcie złotego orła', 'Pomost abordażowy', 'Odświętna toga senatorska', 'B', 12);
+
+insert into users(first_name, last_name, age, username, password, role) values
+('Anna', 'Kalisz', '46', 'akalisz', '{noop}ania', 'standard');
